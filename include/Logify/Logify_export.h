@@ -1,3 +1,17 @@
+/*
+ * Logify Logger Library
+ *
+ * Author: Mustafa Alotbah
+ * Contact: mustafa.alotbah@gmail.com
+ * Date: 2024 August
+ *
+ * Description:
+ * This header file defines the macro for exporting or importing symbols
+ * in the Logify library based on the platform and build configuration.
+ *
+ * License:
+ * BSD 3-Clause License
+ */
 
 #pragma once
 

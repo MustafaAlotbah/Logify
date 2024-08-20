@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>body {
+        background-color: #1e1e1e;
+        color: #d4d4d4;
+        font-family: Arial, sans-serif;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th.timestamp, td.timestamp {
+        width: fit-content;
+        white-space: nowrap;
+    }
+
+    th.pid-tid, td.pid-tid {
+        width: fit-content;
+        white-space: nowrap;
+    }
+
+    th.level, td.level {
+        width: fit-content;
+        white-space: nowrap;
+    }
+
+    th.message, td.message {
+        width: 90%;
+        word-wrap: break-word;
+    }
+
+    .timestamp {
+        font-weight: bold;
+        color: #6c6c6c;
+    }
+
+    .pid-tid {
+        color: #9cdcfe;
+    }
+
+    .level.DEBUG {
+        color: #569cd6;
+    }
+
+    .level.INFO {
+        color: #4ec9b0;
+    }
+
+    .level.WARN {
+        color: #dcdcaa;
+    }
+
+    .level.ERROR {
+        color: #f44747;
+    }
+
+    .level.FATAL {
+        color: #f44747;
+    }
+
+    .message {
+        color: #d4d4d4;
+    }
+
+    .message.FATAL {
+        color: #f44747;
+    }
+
+    .message.ERROR {
+        color: #f44747;
+    }
+
+    .message.WARN {
+        color: #dcdcaa;
+    }</style>
+</head>
+<body><h2>Logify Logs</h2>
+<table>
+    <tr>
+        <th class="timestamp">Timestamp</th>
+        <th class="pid-tid">PID/TID</th>
+        <th class="level">Level</th>
+        <th class="message">Message</th>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:09:09</td>
+        <td class="pid-tid">[86396/1]</td>
+        <td class="level INFO ">INFO</td>
+        <td class="message INFO ">Starting the application...</td>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:09:09</td>
+        <td class="pid-tid">[86396/1]</td>
+        <td class="level INFO ">INFO</td>
+        <td class="message INFO ">void initializeResources()</td>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:09:09</td>
+        <td class="pid-tid">[86396/1]</td>
+        <td class="level INFO ">INFO</td>
+        <td class="message INFO ">&nbsp;&nbsp;Loading configuration...</td>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:09:09</td>
+        <td class="pid-tid">[86396/1]</td>
+        <td class="level INFO ">INFO</td>
+        <td class="message INFO ">&nbsp;&nbsp;Initializing database connection...</td>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:09:09</td>
+        <td class="pid-tid">[86396/1]</td>
+        <td class="level INFO ">INFO</td>
+        <td class="message INFO ">&nbsp;&nbsp;Database connection established successfully.</td>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:09:09</td>
+        <td class="pid-tid">[86396/1]</td>
+        <td class="level INFO ">INFO</td>
+        <td class="message INFO ">&nbsp;&nbsp;Setting up application environment...</td>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:09:09</td>
+        <td class="pid-tid">[86396/1]</td>
+        <td class="level WARN ">WARN</td>
+        <td class="message WARN ">&nbsp;&nbsp;Environment variable 'APP_MODE' not set. Defaulting to 'production'.</td>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:09:09</td>
+        <td class="pid-tid">[86396/1]</td>
+        <td class="level INFO ">INFO</td>
+        <td class="message INFO ">~void initializeResources() - Duration: 2 ms</td>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:09:09</td>
+        <td class="pid-tid">[86396/1]</td>
+        <td class="level INFO ">INFO</td>
+        <td class="message INFO ">&nbsp;&nbsp;Starting data processing...</td>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:09:09</td>
+        <td class="pid-tid">[86396/1]</td>
+        <td class="level INFO ">INFO</td>
+        <td class="message INFO ">&nbsp;&nbsp;Data successfully read from source A.</td>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:09:09</td>
+        <td class="pid-tid">[86396/1]</td>
+        <td class="level ERROR">ERROR</td>
+        <td class="message ERROR">&nbsp;&nbsp;Data processing failed due to invalid format in record 42.</td>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:09:09</td>
+        <td class="pid-tid">[86396/1]</td>
+        <td class="level INFO ">INFO</td>
+        <td class="message INFO ">&nbsp;&nbsp;Applying fallback processing...</td>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:09:09</td>
+        <td class="pid-tid">[86396/1]</td>
+        <td class="level INFO ">INFO</td>
+        <td class="message INFO ">&nbsp;&nbsp;Fallback processing completed successfully.</td>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:09:09</td>
+        <td class="pid-tid">[86396/1]</td>
+        <td class="level INFO ">INFO</td>
+        <td class="message INFO ">int main(int, char**)</td>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:09:09</td>
+        <td class="pid-tid">[86396/1]</td>
+        <td class="level INFO ">INFO</td>
+        <td class="message INFO ">&nbsp;&nbsp;Evaluating decision criteria...</td>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:09:09</td>
+        <td class="pid-tid">[86396/1]</td>
+        <td class="level FATAL">FATAL</td>
+        <td class="message FATAL">&nbsp;&nbsp;Critical error: insufficient data to make a decision. Aborting
+            operation.
+        </td>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:09:09</td>
+        <td class="pid-tid">[86396/1]</td>
+        <td class="level WARN ">WARN</td>
+        <td class="message WARN ">&nbsp;&nbsp;Attempting to recover from critical error...</td>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:09:09</td>
+        <td class="pid-tid">[86396/1]</td>
+        <td class="level INFO ">INFO</td>
+        <td class="message INFO ">&nbsp;&nbsp;Recovery successful. Proceeding with limited functionality.</td>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:09:09</td>
+        <td class="pid-tid">[86396/1]</td>
+        <td class="level INFO ">INFO</td>
+        <td class="message INFO ">~int main(int, char**) - Duration: 1 ms</td>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:09:09</td>
+        <td class="pid-tid">[86396/1]</td>
+        <td class="level INFO ">INFO</td>
+        <td class="message INFO ">Finalizing the application...</td>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:09:09</td>
+        <td class="pid-tid">[86396/1]</td>
+        <td class="level INFO ">INFO</td>
+        <td class="message INFO ">Resources released successfully.</td>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:09:09</td>
+        <td class="pid-tid">[86396/1]</td>
+        <td class="level INFO ">INFO</td>
+        <td class="message INFO ">This is an INFO level message to indicate regular operation.</td>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:09:09</td>
+        <td class="pid-tid">[86396/1]</td>
+        <td class="level WARN ">WARN</td>
+        <td class="message WARN ">This is a WARN level message to indicate a potential problem.</td>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:09:09</td>
+        <td class="pid-tid">[86396/1]</td>
+        <td class="level ERROR">ERROR</td>
+        <td class="message ERROR">This is an ERROR level message to indicate a serious issue.</td>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:09:09</td>
+        <td class="pid-tid">[86396/1]</td>
+        <td class="level FATAL">FATAL</td>
+        <td class="message FATAL">This is a FATAL level message to indicate a critical problem causing the application
+            to abort.
+        </td>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:09:09</td>
+        <td class="pid-tid">[86396/1]</td>
+        <td class="level INFO ">INFO</td>
+        <td class="message INFO ">Application has completed its execution.</td>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:10:07</td>
+        <td class="pid-tid">[82960/1]</td>
+        <td class="level INFO ">INFO</td>
+        <td class="message INFO "><span style="display:inline-block; width:0px;"></span>Starting the application...</td>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:10:07</td>
+        <td class="pid-tid">[82960/1]</td>
+        <td class="level INFO ">INFO</td>
+        <td class="message INFO "><span style="display:inline-block; width:0px;"></span>void initializeResources()</td>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:10:07</td>
+        <td class="pid-tid">[82960/1]</td>
+        <td class="level INFO ">INFO</td>
+        <td class="message INFO "><span style="display:inline-block; width:20px;"></span>Loading configuration...</td>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:10:07</td>
+        <td class="pid-tid">[82960/1]</td>
+        <td class="level INFO ">INFO</td>
+        <td class="message INFO "><span style="display:inline-block; width:20px;"></span>Initializing database
+            connection...
+        </td>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:10:07</td>
+        <td class="pid-tid">[82960/1]</td>
+        <td class="level INFO ">INFO</td>
+        <td class="message INFO "><span style="display:inline-block; width:20px;"></span>Database connection established
+            successfully.
+        </td>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:10:07</td>
+        <td class="pid-tid">[82960/1]</td>
+        <td class="level INFO ">INFO</td>
+        <td class="message INFO "><span style="display:inline-block; width:20px;"></span>Setting up application
+            environment...
+        </td>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:10:07</td>
+        <td class="pid-tid">[82960/1]</td>
+        <td class="level WARN ">WARN</td>
+        <td class="message WARN "><span style="display:inline-block; width:20px;"></span>Environment variable 'APP_MODE'
+            not set. Defaulting to 'production'.
+        </td>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:10:07</td>
+        <td class="pid-tid">[82960/1]</td>
+        <td class="level INFO ">INFO</td>
+        <td class="message INFO "><span style="display:inline-block; width:0px;"></span>~void initializeResources() -
+            Duration: 3 ms
+        </td>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:10:07</td>
+        <td class="pid-tid">[82960/1]</td>
+        <td class="level INFO ">INFO</td>
+        <td class="message INFO "><span style="display:inline-block; width:20px;"></span>Starting data processing...
+        </td>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:10:07</td>
+        <td class="pid-tid">[82960/1]</td>
+        <td class="level INFO ">INFO</td>
+        <td class="message INFO "><span style="display:inline-block; width:20px;"></span>Data successfully read from
+            source A.
+        </td>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:10:07</td>
+        <td class="pid-tid">[82960/1]</td>
+        <td class="level ERROR">ERROR</td>
+        <td class="message ERROR"><span style="display:inline-block; width:20px;"></span>Data processing failed due to
+            invalid format in record 42.
+        </td>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:10:07</td>
+        <td class="pid-tid">[82960/1]</td>
+        <td class="level INFO ">INFO</td>
+        <td class="message INFO "><span style="display:inline-block; width:20px;"></span>Applying fallback processing...
+        </td>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:10:07</td>
+        <td class="pid-tid">[82960/1]</td>
+        <td class="level INFO ">INFO</td>
+        <td class="message INFO "><span style="display:inline-block; width:20px;"></span>Fallback processing completed
+            successfully.
+        </td>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:10:07</td>
+        <td class="pid-tid">[82960/1]</td>
+        <td class="level INFO ">INFO</td>
+        <td class="message INFO "><span style="display:inline-block; width:0px;"></span>int main(int, char**)</td>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:10:07</td>
+        <td class="pid-tid">[82960/1]</td>
+        <td class="level INFO ">INFO</td>
+        <td class="message INFO "><span style="display:inline-block; width:20px;"></span>Evaluating decision criteria...
+        </td>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:10:07</td>
+        <td class="pid-tid">[82960/1]</td>
+        <td class="level FATAL">FATAL</td>
+        <td class="message FATAL"><span style="display:inline-block; width:20px;"></span>Critical error: insufficient
+            data to make a decision. Aborting operation.
+        </td>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:10:07</td>
+        <td class="pid-tid">[82960/1]</td>
+        <td class="level WARN ">WARN</td>
+        <td class="message WARN "><span style="display:inline-block; width:20px;"></span>Attempting to recover from
+            critical error...
+        </td>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:10:07</td>
+        <td class="pid-tid">[82960/1]</td>
+        <td class="level INFO ">INFO</td>
+        <td class="message INFO "><span style="display:inline-block; width:20px;"></span>Recovery successful. Proceeding
+            with limited functionality.
+        </td>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:10:07</td>
+        <td class="pid-tid">[82960/1]</td>
+        <td class="level INFO ">INFO</td>
+        <td class="message INFO "><span style="display:inline-block; width:0px;"></span>~int main(int, char**) -
+            Duration: 1 ms
+        </td>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:10:07</td>
+        <td class="pid-tid">[82960/1]</td>
+        <td class="level INFO ">INFO</td>
+        <td class="message INFO "><span style="display:inline-block; width:0px;"></span>Finalizing the application...
+        </td>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:10:07</td>
+        <td class="pid-tid">[82960/1]</td>
+        <td class="level INFO ">INFO</td>
+        <td class="message INFO "><span style="display:inline-block; width:0px;"></span>Resources released successfully.
+        </td>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:10:07</td>
+        <td class="pid-tid">[82960/1]</td>
+        <td class="level INFO ">INFO</td>
+        <td class="message INFO "><span style="display:inline-block; width:0px;"></span>This is an INFO level message to
+            indicate regular operation.
+        </td>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:10:07</td>
+        <td class="pid-tid">[82960/1]</td>
+        <td class="level WARN ">WARN</td>
+        <td class="message WARN "><span style="display:inline-block; width:0px;"></span>This is a WARN level message to
+            indicate a potential problem.
+        </td>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:10:07</td>
+        <td class="pid-tid">[82960/1]</td>
+        <td class="level ERROR">ERROR</td>
+        <td class="message ERROR"><span style="display:inline-block; width:0px;"></span>This is an ERROR level message
+            to indicate a serious issue.
+        </td>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:10:07</td>
+        <td class="pid-tid">[82960/1]</td>
+        <td class="level FATAL">FATAL</td>
+        <td class="message FATAL"><span style="display:inline-block; width:0px;"></span>This is a FATAL level message to
+            indicate a critical problem causing the application to abort.
+        </td>
+    </tr>
+    <tr class="log-entry">
+        <td class="timestamp">2024-08-21 01:10:07</td>
+        <td class="pid-tid">[82960/1]</td>
+        <td class="level INFO ">INFO</td>
+        <td class="message INFO "><span style="display:inline-block; width:0px;"></span>Application has completed its
+            execution.
+        </td>
+    </tr>
+</table>
+</body>
+</html>

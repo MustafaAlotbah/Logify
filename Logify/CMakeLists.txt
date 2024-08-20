@@ -5,7 +5,11 @@ add_library(Logify SHARED)
 target_sources(Logify PRIVATE
         source/Logify.cpp
         source/Logify_internal.cpp
-        # Add more files as needed
+        source/Logger.cpp
+        source/LoggerImpl.cpp
+        source/getPid.cpp
+        source/FileStream.cpp
+        source/ScopedLogger.cpp
 )
 
 # Pass the version to the source code via a preprocessor definition
@@ -23,16 +27,6 @@ target_include_directories(Logify
     PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/internal
 )
-
-# Find and link the required libraries below
-#find_library(SOMELIBRARY_LIB NAMES somelibrary libsomelibrary)
-#target_link_libraries(Logify PRIVATE ${SOMELIBRARY_LIB})
-#
-## Optionally, you can check if the library was found and provide a useful error message
-#if (NOT SOMELIBRARY_LIB)
-#    message(FATAL_ERROR "some library static library not found.")
-#endif()
-
 
 # Hide Internal functions
 target_compile_options(Logify PRIVATE -fvisibility=hidden)
