@@ -42,7 +42,7 @@ int main(int argc, char* argv[]) {
 
 	// Simulate a critical section where important decisions are made.
 	{
-		LOGIFY_SCOPED_LOGGER();
+		LOGIFY_SCOPED_LOGGER_NAMED("Main's Critical Section");
 
 		logger.info("Evaluating decision criteria...");
 		// Simulate a critical error
@@ -100,7 +100,7 @@ void initializeResources()
 void processData()
 {
 	// Using the macro with a specific DEBUG log level
-	LOGIFY_SCOPED_LOGGER_LEVEL(Logify::LogLevel::DEBUG);
+	LOGIFY_SCOPED_LOGGER_LEVEL(Logify::LogLevel::WARN);
 
 	logger.info("Starting data processing...");
 

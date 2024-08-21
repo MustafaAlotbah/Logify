@@ -32,6 +32,7 @@ namespace Logify
 	  std::string background;        ///< Background color of the log output.
 	  std::string timestampColor;    ///< Color of the timestamp in the log output.
 	  std::string pidTidColor;       ///< Color of the process ID and thread ID in the log output.
+	  std::string scopeColor;        ///< Color of the scope in the log output.
 	  std::string defaultColor;      ///< Default color for log messages.
 	  std::string debugColor;        ///< Color for DEBUG level log messages.
 	  std::string infoColor;         ///< Color for INFO level log messages.
@@ -42,15 +43,16 @@ namespace Logify
   /**
    * @brief Default dark color scheme used for log outputs.
    */
-  constexpr ColorScheme DefaultDarkScheme = {
+  const ColorScheme DefaultDarkScheme = {
 	  "#1e1e1e",
 	  "#6c6c6c",
 	  "#9cdcfe",
+	  "#61c2f0",
 	  "#d4d4d4",
 	  "#569cd6",
 	  "#4ec9b0",
-	  "#dcdcaa",
-	  "#f44747"
+	  "#ffce45",
+	  "#f54d47"
   };
 
 } // namespace Logify

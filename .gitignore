@@ -2,6 +2,7 @@ output/
 cmake-build-debug/
 cmake-build-release/
 build/
+build_linux/
 
 # Precompiled Headers
 *.gch

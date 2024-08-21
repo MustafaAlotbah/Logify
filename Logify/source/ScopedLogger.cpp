@@ -17,7 +17,7 @@ Logify::ScopedLogger::Impl::Impl(Logger& logger, std::string scopeName, LogLevel
 Logify::ScopedLogger::ScopedLogger(Logify::Logger& logger, const std::string& scopeName, Logify::LogLevel level)
 	: pImpl_(std::make_unique<Impl>(logger, scopeName, level))
 {
-	logger.log(level, scopeName);
+	logger.log(level, scopeName + " {");
 	logger.pImpl_->indent();
 }
 
@@ -33,5 +33,8 @@ Logify::ScopedLogger::~ScopedLogger()
 	auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(endTime - pImpl_->startTime_).count();
 
 	// Log the exit of the scope, along with its duration.
-	pImpl_->logger_.log(pImpl_->level_, "~" + pImpl_->scopeName_ + " - Duration: " + std::to_string(duration) + " ms");
+	pImpl_->logger_.log(
+		pImpl_->level_,
+		"} // End of " + pImpl_->scopeName_ + " - Duration: " + std::to_string(duration) + " ms"
+	);
 }

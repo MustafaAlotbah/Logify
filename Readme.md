@@ -98,15 +98,9 @@ logger.addFileStream("application.html", 10 * 1024 * 1024, Logify::DefaultDarkSc
 This will generate an HTML file with your logs, including a table format with customizable colors for different log
 levels.
 
-| Timestamp           | PID/TID   | Level | Message                                                   |
-|---------------------|-----------|-------|-----------------------------------------------------------|
-| 2024-08-21 01:09:09 | [86396/1] | INFO  | Starting the application...                               |
-| 2024-08-21 01:09:09 | [86396/1] | INFO  | void initializeResources()                                |
-| 2024-08-21 01:09:09 | [86396/1] | INFO  | &nbsp;&nbsp;Loading configuration...                      |
-| 2024-08-21 01:09:09 | [86396/1] | INFO  | &nbsp;&nbsp;Initializing database connection...           |
-| 2024-08-21 01:09:10 | [86396/1] | INFO  | &nbsp;&nbsp;Database connection established successfully. |
-| 2024-08-21 01:09:10 | [86396/1] | INFO  | Exiting initializeResources(), took 100ms                 |
-| 2024-08-21 01:09:10 | [86396/1] | INFO  | Application started successfully.                         |
+Below is an overview of HTML logging
+
+![Overview of HTML logging](./media/screenshot.png)
 
 [View the Logify HTML Logs](./media/application_0000.html)
 
@@ -157,7 +151,7 @@ Scoped logging is a powerful feature that logs the start and end of a scope, alo
 
 ```cpp
 void someFunction() {
-    LOGIFY_SCOPED_LOGGER_DEFAULT();
+    LOGIFY_SCOPED_LOGGER();
     // Code here will be timed and logged automatically
 }
 ```

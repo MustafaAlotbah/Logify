@@ -65,8 +65,36 @@ void Logify::FileStream::write(
 
 		if (extension_ == FileExtension::HTML)
 		{
-			// If writing to an HTML file, replace newlines in the message with <br> tags for formatting.
-			auto message_ = replace(message, "\n", "<br>");
+			// Split the message into code and comment parts
+			std::string codePart   = message;
+			std::string commentPart;
+			size_t      commentPos = message.find("//");
+			size_t      scopePos   = message.find('{');
+
+			// Scope found
+			if (scopePos != std::string::npos)
+			{
+
+				codePart =
+					"<span class=\"scope\">" + message.substr(0, scopePos) + "</span> {";  // Everything before "//"
+
+			}
+
+			if (commentPos != std::string::npos)
+			{
+				codePart    = message.substr(0, commentPos);    // Everything before "//"
+				commentPart = message.substr(commentPos);        // "//" and everything after
+			}
+
+			// Replace newlines in the code part with <br> tags for formatting
+			codePart = replace(codePart, "\n", "<br>");
+
+			// Apply colors to the code and comment parts
+			std::string coloredCodePart    = codePart;
+			std::string coloredCommentPart = "<span class=\"timestamp\">" + commentPart + "</span>";
+
+			// Combine the parts into the final HTML-formatted message
+			std::string message_ = coloredCodePart + coloredCommentPart;
 
 			// Create a span for indentation with a fixed width
 			std::string htmlIndentation = "<span style=\"display:inline-block; width:" + std::to_string(indent * 20)
@@ -149,7 +177,7 @@ void Logify::FileStream::openFile()
 					   << "th.pid-tid, td.pid-tid { width: fit-content; white-space: nowrap; }"
 					   << "th.level, td.level { width: fit-content; white-space: nowrap; }"
 					   << "th.message, td.message { width: 90%; word-wrap: break-word; }"
-					   << ".timestamp { font-weight: bold; color: " << colorScheme_.timestampColor << "; }"
+					   << ".timestamp { color: " << colorScheme_.timestampColor << "; font-style: oblique; }"
 					   << ".pid-tid { color: " << colorScheme_.pidTidColor << "; }"
 					   << ".level.DEBUG { color: " << colorScheme_.debugColor << "; }"
 					   << ".level.INFO { color: " << colorScheme_.infoColor << "; }"
@@ -160,6 +188,7 @@ void Logify::FileStream::openFile()
 					   << ".message.FATAL { color: " << colorScheme_.errorColor << "; }"
 					   << ".message.ERROR { color: " << colorScheme_.errorColor << "; }"
 					   << ".message.WARN { color: " << colorScheme_.warnColor << "; }"
+					   << ".scope { color: " << colorScheme_.scopeColor << "; font-weight: bold; }"
 					   << "</style></head><body><h2>Logify Logs</h2><table>\n"
 					   << "<tr><th class=\"timestamp\">Timestamp</th><th class=\"pid-tid\">PID/TID</th><th class=\"level\">Level</th><th class=\"message\">Message</th></tr>\n";
 	}
