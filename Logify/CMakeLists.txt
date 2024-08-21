@@ -29,7 +29,10 @@ target_include_directories(Logify
 )
 
 # Hide Internal functions
-target_compile_options(Logify PRIVATE -fvisibility=hidden)
+
+if (CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+    target_compile_options(Logify PRIVATE -fvisibility=hidden)
+endif ()
 set_target_properties(Logify PROPERTIES CXX_VISIBILITY_PRESET hidden)
 set_target_properties(Logify PROPERTIES VISIBILITY_INLINES_HIDDEN YES)
 

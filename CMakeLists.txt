@@ -6,14 +6,35 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 
-# Set compiler flags based on build type
-if(CMAKE_BUILD_TYPE MATCHES Debug)
-    message(STATUS "Configuring for a Debug build")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -g3 -Og")
-    add_definitions(-DDEBUG_MODE)
-else()
-    message(STATUS "Configuring for a Release build")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -g0 -O3")
+# Check the compiler and set compiler flags accordingly
+if (CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+    message(STATUS "Configuring for GCC/Clang")
+
+    # Set compiler flags for GCC/Clang
+    if (CMAKE_BUILD_TYPE MATCHES Debug)
+        message(STATUS "Configuring for a Debug build")
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror -Wall -g3 -Og")
+        add_definitions(-DDEBUG_MODE)
+    else ()
+        message(STATUS "Configuring for a Release build")
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror -Wall -g0 -O3")
+    endif ()
+
+elseif (CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
+    message(STATUS "Configuring for MSVC")
+
+    # Set compiler flags for MSVC
+    if (CMAKE_BUILD_TYPE MATCHES Debug)
+        message(STATUS "Configuring for a Debug build")
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W3 /WX /Zi /Od")
+        add_definitions(-DDEBUG_MODE)
+    else ()
+        message(STATUS "Configuring for a Release build")
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W3 /WX /Ox /DNDEBUG")
+    endif ()
+
+else ()
+    message(WARNING "Unknown compiler, using default settings")
 endif()
 
 

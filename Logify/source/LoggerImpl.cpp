@@ -67,12 +67,28 @@ std::string Logify::Logger::Impl::getCurrentTime() const
 	auto now   = std::chrono::system_clock::now();
 	auto timeT = std::chrono::system_clock::to_time_t(now);
 
-	// Convert to local time (based on system's locale).
-	auto localTime = std::localtime(&timeT);
+	// Structure to hold the local time result.
+	std::tm localTime;
+
+#ifdef _MSC_VER
+	// Use localtime_s on MSVC for safety (This is MSVC specific).
+	errno_t err = localtime_s(&localTime, &timeT);
+	if (err != 0) {
+		throw std::runtime_error("Failed to convert time to local time.");
+	}
+#else
+	// Use the thread-safe version in GCC and Clang
+	std::tm* localTimePtr = std::localtime(&timeT);
+	if (localTimePtr == nullptr)
+	{
+		throw std::runtime_error("Failed to convert time to local time.");
+	}
+	localTime = *localTimePtr;
+#endif
 
 	// Format the time according to the provided format string.
 	std::ostringstream oss;
-	oss << std::put_time(localTime, timeFormat_.c_str());
+	oss << std::put_time(&localTime, timeFormat_.c_str());
 	return oss.str();
 }
 
