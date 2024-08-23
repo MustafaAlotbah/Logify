@@ -37,6 +37,8 @@ else ()
     message(WARNING "Unknown compiler, using default settings")
 endif()
 
+# Enable compile command to accelerate indexing for some IDEs (Visual Studio, CLion)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # Define the platform-specific paths and packaging configurations.
 # This ensures that the correct dependencies are used depending on the platform.

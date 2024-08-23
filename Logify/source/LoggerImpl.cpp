@@ -86,9 +86,17 @@ std::string Logify::Logger::Impl::getCurrentTime() const
 	localTime = *localTimePtr;
 #endif
 
+	// Extract milliseconds
+	auto duration = now.time_since_epoch();
+	auto millis   = std::chrono::duration_cast<std::chrono::milliseconds>(duration).count() % 1000;
+
 	// Format the time according to the provided format string.
 	std::ostringstream oss;
 	oss << std::put_time(&localTime, timeFormat_.c_str());
+
+	// Append milliseconds with precision
+	oss << '.' << std::setfill('0') << std::setw(3) << millis;
+
 	return oss.str();
 }
 
