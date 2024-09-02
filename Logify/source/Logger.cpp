@@ -87,12 +87,12 @@ void Logify::Logger::log(Logify::LogLevel level, const std::string& message)
 		if (stream == &std::cout || stream == &std::cerr)
 		{
 			// If the stream is a console, prepend the color code and append the reset code after the message.
-			*stream << colorCode << oss.str() << ConsoleColors::Reset;
+			*stream << colorCode << oss.str() << ConsoleColors::Reset << std::flush;
 		}
 		else
 		{
 			// For non-console ostreams, simply write the message without color codes.
-			*stream << oss.str();
+			*stream << oss.str() << std::flush;
 		}
 	}
 
