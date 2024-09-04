@@ -71,17 +71,25 @@ void Logify::Logger::log(Logify::LogLevel level, const std::string& message)
 
 	// Get the current thread ID.
 	std::thread::id tid = std::this_thread::get_id();
+	std::stringstream tid_ss;
+	tid_ss << tid;
+	std::string tidStr = tid_ss.str();
+	// Ensure the string is at least 3 characters long by padding with zeros if necessary
+	if (tidStr.size() < 3) tidStr.insert(0, 3 - tidStr.size(), '0');
+
+
 
 	// Construct the log message string using the timestamp, PID, TID, log level, and message content.
 	std::ostringstream oss;
-	oss << "[" << timestamp << "][ID:" << pid << "/" << tid << "][" << pImpl_->levelToString(level) << "]: " << message
+	oss << "[" << timestamp << "][ID:" << pid << "/" << tidStr << "][" << pImpl_->levelToString(level) << "]: "
+		<< message
 		<< std::endl;
 
 	// Lock the mutex to ensure thread-safe access to the output streams.
 	std::lock_guard<std::mutex> lock(pImpl_->mutex_);
 
 	// Iterate over each output stream in the Logger implementation.
-	for (auto& stream : pImpl_->outputStreams_)
+	for (auto stream : pImpl_->outputStreams_)
 	{
 		// Check if the stream is either std::cout or std::cerr (console output).
 		if (stream == &std::cout || stream == &std::cerr)
