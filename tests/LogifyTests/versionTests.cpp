@@ -3,5 +3,5 @@
 
 
 TEST_CASE("Logify Version", "[getVersion]") {
-	REQUIRE(Logify::getVersion() == "0.1.0");
+	REQUIRE(Logify::getVersion() == "0.1.2");
 }
