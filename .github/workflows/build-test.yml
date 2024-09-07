@@ -1,0 +1,60 @@
+name: Continuous Integration
+
+# Specify the events that trigger this workflow
+on:
+  push:
+    branches:
+      - main      # Trigger on push events to the 'main' branch
+  pull_request:
+    branches:
+      - main      # Trigger on pull requests targeting the 'main' branch
+
+# Define the jobs in this workflow
+jobs:
+  build:
+    # Default runner is Ubuntu, but overridden by matrix strategy
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        config:
+          # Runs the job on multiple OS/compiler/build type configurations for broader testing coverage
+          - { os: ubuntu-latest, compiler: gcc, cmake_build_type: Debug }
+          - { os: ubuntu-latest, compiler: gcc, cmake_build_type: Release }
+          - { os: windows-latest, compiler: msvc, cmake_build_type: Debug }
+          - { os: windows-latest, compiler: msvc, cmake_build_type: Release }
+
+    steps:
+      # Retrieve the latest code from the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Ensure CMake is available for the build process
+      - name: Set up CMake
+        uses: lukka/get-cmake@latest
+
+      # Install GCC, G++, and CMake on Ubuntu environments
+      - name: Install dependencies (Ubuntu)
+        if: matrix.config.os == 'ubuntu-latest'
+        run: sudo apt-get update && sudo apt-get install -y g++ gcc cmake
+
+      # No additional steps required for MSVC setup on Windows
+
+      # Create a build directory and configure the project using CMake
+      - name: Configure CMake
+        run: |
+          mkdir build
+          cd build
+          cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.config.cmake_build_type }}
+
+      # Compile the project using CMake-generated build system
+      - name: Build project
+        run: |
+          cd build
+          cmake --build .
+
+      # Execute tests using CTest and provide detailed output on failures
+      - name: Run tests
+        run: |
+          cd build/tests
+          ctest --output-on-failure
