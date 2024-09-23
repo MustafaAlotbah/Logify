@@ -8,12 +8,18 @@ if (WIN32)
     if (CMAKE_CXX_COMPILER_ID MATCHES "GNU|MinGW")
         # For MinGW or GCC-based toolchains that use .dll.a
         set_target_properties(Logify::Logify PROPERTIES
-            IMPORTED_IMPLIB "${CMAKE_CURRENT_LIST_DIR}/../../../lib/libLogify.dll.a"
+            IMPORTED_IMPLIB "${PACKAGE_PREFIX_DIR}/lib/libLogify.dll.a"
         )
     else()
         # For MSVC or toolchains that use .lib
         set_target_properties(Logify::Logify PROPERTIES
-            IMPORTED_IMPLIB "${CMAKE_CURRENT_LIST_DIR}/../../../lib/libLogify.lib"
+            IMPORTED_IMPLIB "${PACKAGE_PREFIX_DIR}/lib/libLogify.lib"
         )
     endif()
+elseif (UNIX AND NOT APPLE)
+# Define IMPORTED_LOCATION_* for Linux / UNIX Build
+  set_target_properties(Logify::Logify PROPERTIES
+          IMPORTED_LOCATION_RELEASE "${PACKAGE_PREFIX_DIR}/lib/libLogify.so"
+          IMPORTED_LOCATION_DEBUG "${PACKAGE_PREFIX_DIR}/lib/libLogify.so"
+  )
 endif()
